@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Task } from "./shared/task.model";
+
 const TASKS: Array<any> = [
   {id: 1, title: 'fazer tarefa 1'},
   {id: 2, title: 'fazer tarefa 2'},
@@ -8,6 +10,7 @@ const TASKS: Array<any> = [
   {id: 5, title: 'fazer tarefa 5'},
   {id: 6, title: 'fazer tarefa 6'},
   {id: 7, title: 'fazer tarefa 7'},
+  {id: 8, title: 'fazer tarefa 8'},
 ];
 
 @Component({
@@ -15,14 +18,22 @@ const TASKS: Array<any> = [
   templateUrl: './tasks.component.html'
 })
 
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit{
 
-  public tasks;
+  public tasks: any[];
+  public selectedTask: Task;
 
   public constructor(){
-  }
+
+  };
 
   public ngOnInit(){
     this.tasks = TASKS;
   }
+
+ public onSelect(task: Task) {
+   this.selectedTask = task;
+ }
+  
+
 }
