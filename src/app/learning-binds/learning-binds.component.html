@@ -1,0 +1,23 @@
+
+<h1>Estudando bindings</h1>
+
+<button (click)="onClick()" >Onclick {{mouseClickCount}}</button>
+
+<br> <Br> 
+
+<button (mouseover)="onMouseOver()" >OnMouseOver {{mouseOverCount}} </button>
+
+<hr>
+
+
+<input type="text" placeholder="" [value]="userName" (keydown)="onKeyDown($event)" > 
+<strong>valor da varivel nome é:  </strong>  {{userName}}
+<br>
+<input type="text" placeholder="" value="{{userEmail}}" (keyup)="onKeyUp($event)" >
+<strong [class.bg-red]=" this.mouseClickCount >= 3">valor da varivel nome é: </strong> {{userEmail}}
+
+<style>
+  .bg-red {
+    background-color: red;
+  }
+</style>
