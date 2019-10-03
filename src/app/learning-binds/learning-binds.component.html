@@ -16,6 +16,13 @@
 <input type="text" placeholder="" value="{{userEmail}}" (keyup)="onKeyUp($event)" >
 <strong [class.bg-red]=" this.mouseClickCount >= 3">valor da varivel nome é: </strong> {{userEmail}}
 
+<br><br>
+<input type="text" placeholder="teste1" [(ngModel)]="userName" >  <strong>valor da varivel nome é:  </strong>  {{userName}} <br>
+
+<input type="text" placeholder="teste2" [(ngModel)]="userEmail" >   <strong>valor da varivel nome é:  </strong>  {{userEmail}}
+
+
+
 <style>
   .bg-red {
     background-color: red;
