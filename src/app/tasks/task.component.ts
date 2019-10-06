@@ -1,34 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from "./shared/task.model";
+import { TaskService } from './shared/task.service';
 
-const TASKS: Array<any> = [
-  {id: 1, title: 'fazer tarefa 1'},
-  {id: 2, title: 'fazer tarefa 2'},
-  {id: 3, title: 'fazer tarefa 3'},
-  {id: 4, title: 'fazer tarefa 4'},
-  {id: 5, title: 'fazer tarefa 5'},
-  {id: 6, title: 'fazer tarefa 6'},
-  {id: 7, title: 'fazer tarefa 7'},
-  {id: 8, title: 'fazer tarefa 8'},
-];
+
 
 @Component({
   selector: 'tasks',
-  templateUrl: './tasks.component.html'
+  templateUrl: './tasks.component.html',
+  providers: [ TaskService ]
 })
 
 export class TasksComponent implements OnInit{
 
-  public tasks: any = [];
+  public tasks: Array<Task>;
   public selectedTask: Task;
 
-  public constructor(){
 
+  public constructor(private taskService: TaskService){
   };
 
   public ngOnInit(){
-    this.tasks = TASKS;
+    this.tasks = this.taskService.getTasks();
   }
 
  public onSelect(task: Task) {
