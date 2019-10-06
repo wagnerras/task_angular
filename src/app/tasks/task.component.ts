@@ -20,7 +20,7 @@ const TASKS: Array<any> = [
 
 export class TasksComponent implements OnInit{
 
-  public tasks: any[];
+  public tasks: any = [];
   public selectedTask: Task;
 
   public constructor(){
