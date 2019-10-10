@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
-
 import { Task } from "./task.model";
+
 
 const TASKS: Array<Task> = [
   {id: 1, title: 'fazer tarefa 1'},
@@ -25,6 +25,10 @@ export class TaskService{
         reject("NÃO HÁ TAREFAS");
       }     
     })
+  }
+
+  public getImportantTasks(): Promise<Task[]>{
+    return Promise.resolve(TASKS.slice(0, 3));
   }
   
 }

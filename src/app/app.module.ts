@@ -10,6 +10,7 @@ import { TasksComponent } from './tasks/task.component';
 import { LearningBindingComponent } from './learning-binds/learning-binds.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { TaskService } from "./tasks/shared/task.service";
 
 const ROUTES = RouterModule.forRoot([
   {
@@ -44,7 +45,9 @@ const ROUTES = RouterModule.forRoot([
     HttpModule,
     ROUTES
   ],
-  providers: [],
+  providers: [
+    TaskService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
