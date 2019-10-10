@@ -9,11 +9,22 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TasksComponent } from './tasks/task.component';
 import { LearningBindingComponent } from './learning-binds/learning-binds.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const ROUTES = RouterModule.forRoot([
   {
     path: 'tasks',
     component: TasksComponent
+  },
+
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   }
 ])
 
@@ -24,7 +35,8 @@ const ROUTES = RouterModule.forRoot([
     NavbarComponent,
     TasksComponent,
     LearningBindingComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
