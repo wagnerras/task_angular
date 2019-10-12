@@ -1,11 +1,12 @@
  
-<h1>Detalhes da tarefa: {{task?.title}}</h1>
+<h1 class="mb-5" >Detalhes da tarefa: {{task?.title}}</h1>
+
   <div *ngIf="task">
     <div class="form-group">
       <label for="title">Título</label>
       <input [(ngModel)]="task.title" type="text" class="form-control">
     </div>
-    <button class="btn btn-info" (click)="goBack()">Voltar</button>
+    <button class="btn btn-secondary" (click)="goBack()">Voltar</button>
     <button type="submit" class="btn btn-success">Salvar</button>
   </div>
   
