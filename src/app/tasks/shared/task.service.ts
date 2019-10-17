@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Http } from "@angular/http";
 
 import { Task } from "./task.model";
 
@@ -16,6 +17,10 @@ const TASKS: Array<Task> = [
 @Injectable()
 
 export class TaskService{
+
+  public constructor(private http: Http){
+    
+  }
 
   public getTasks(): Promise<Array<Task>> {
     return new Promise((resolve, reject) => {
