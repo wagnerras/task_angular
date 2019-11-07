@@ -25,7 +25,7 @@ export class TasksComponent implements OnInit{
     )
   }
 
- public onSelect(task: Task) {
+ public onSelect(task: Task): void {
    this.selectedTask = task;
  }
   
