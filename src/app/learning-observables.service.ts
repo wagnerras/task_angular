@@ -78,7 +78,7 @@ export class LearningObservables {
     this.http.get("api/tasks")
     .subscribe(newData => console.log("chamou o next e passou como parametro o new data => ", newData)); */
 
-    this.http.get("api/tasksgfgfg")
+    /* this.http.get("api/tasksgfgfg")
       .catch(this.handleErrors)
       .subscribe({
         next: (newData) => {
@@ -90,12 +90,12 @@ export class LearningObservables {
         complete: () => {
           console.log("chamou o complete e encerrou")
         }
-      });
+      }); */
   }
 
-  public handleErrors(error: Response) {
+  /* public handleErrors(error: Response) {
     console.log("SALVANDO O ERRO NO BANCO DE DADOS PARA O DEV =>", error);
     return Observable.throw(error);
-  }
+  } */
 
 }
