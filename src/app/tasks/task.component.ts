@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Task } from "./shared/task.model";
 import { TaskService } from './shared/task.service';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @Component({
   selector: 'tasks',
@@ -11,10 +12,10 @@ import { TaskService } from './shared/task.service';
 export class TasksComponent implements OnInit{
 
   public tasks: Array<Task>;
-  public selectedTask: Task;
-
-
+  public newTask: Task;
+ 
   public constructor(private taskService: TaskService){
+    this.newTask = new Task(null, '');
   };
 
   public ngOnInit(){
@@ -25,9 +26,21 @@ export class TasksComponent implements OnInit{
     )
   }
 
- public onSelect(task: Task): void {
-   this.selectedTask = task;
- }
-  
+  public createTask(){
+    this.newTask.title = this.newTask.title.trim();
+
+    if(!this.newTask.title){
+      alert("a tarefa deve ter um titulo");
+    } else {
+      this.taskService.createTask(this.newTask)
+       .subscribe(
+         (task) => {
+            this.tasks.push(task);
+            this.newTask = new Task(null, '');
+         },
+         () => alert("Ocorreu um erro no servidor, tente mais tarde.")
+       )
+    }
+  }
 
 }
