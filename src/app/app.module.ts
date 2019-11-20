@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 //components imports
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TaskSearchComponent } from "./navbar/task-search/task-search.component"
 import { TasksComponent } from './tasks/task.component';
 //import { LearningBindingComponent } from './learning-binds/learning-binds.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
@@ -27,6 +28,7 @@ import { InMemoryTaskDataService  } from "./in-memory-task-data.service";
   declarations: [
     AppComponent,
     NavbarComponent,
+    TaskSearchComponent,
     TasksComponent,
     //LearningBindingComponent,
     TaskDetailComponent,
