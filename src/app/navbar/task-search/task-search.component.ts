@@ -3,7 +3,10 @@ import { Router } from "@angular/router";
 import { Task } from "../../tasks/shared/task.model";
 import { TaskService } from "../../tasks/shared/task.service";
 import { Subject } from "rxjs/Subject";
-import "rxjs/add/operator/switchMap"
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 
@@ -22,7 +25,11 @@ export class TaskSearchComponent implements OnInit {
   }
 
   public ngOnInit(){
-    this.searchTerms.switchMap(
+    this.searchTerms
+    .debounceTime(300)
+    .distinctUntilChanged()
+    .do(term => console.log(term))
+    .switchMap(
       term => term ? this.taskService.searchByTitle(term) : Observable.of<Task[]>([])
     ).subscribe(tasks => this.tasks = tasks)
   }
