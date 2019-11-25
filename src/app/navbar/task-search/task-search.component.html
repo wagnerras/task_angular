@@ -1,15 +1,12 @@
-<div style="position: relative;" >
+<div style="position: relative;">
+ 
+    <div class="form-inline my-2 my-lg-0" style="position: relative;">
+      <input #searchInput type="text" (keyup)="search(searchInput.value)" class="form-control" placeholder="Busca de Tarefas">
+    </div>
 
-  <div class="form-inline my-2 my-lg-0" style="position: relative;">
-    <input class="form-control mr-sm-2" type="search" placeholder="Busca de Tarefas" aria-label="Search">
-  </div>
-
-  <div class="list-group" style="position: absolute; width: 100%; left:0; top:40px; z-index: 3;">
-    <a href="#" class="list-group-item">Tarefa 1</a>
-    <a href="#" class="list-group-item">Tarefa 2</a>
-    <a href="#" class="list-group-item">Tarefa 3</a>
-    <a href="#" class="list-group-item">Tarefa 4</a>
-    <a href="#" class="list-group-item">Tarefa 5</a>
-  </div>
-
+    <div *ngIf="tasks" class="list-group" style="position: absolute; width: 100%; left:0; top:40px; z-index: 3;">
+     <!--  <a *ngFor="let task of tasks" [routerLink]="['/tasks', task.id]" class="list-group-item">{{task.title}}</a> -->
+      <a *ngFor="let task of tasks" (click)="goToTask(task)" class="list-group-item" style="cursor:pointer">{{task.title}}</a>
+    </div>
+ 
 </div>
