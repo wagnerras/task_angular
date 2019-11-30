@@ -4,15 +4,23 @@
 
   <div class="row">
     <div class="form-group col-md-6">
-      <label for="title">Título:</label>
+      <label for="title" [class.text-danger]="title.invalid && (title.touched || title.dirty)">Título:</label>
       <input #title="ngModel" [(ngModel)]="task.title" type="text" class="form-control"
-        [class.is-invalid]="title.invalid && title.touched" [class.is-valid]="title.valid" name="title" id="title"
-        required>
+        [class.is-invalid]="title.invalid && (title.touched || title.dirty)" [class.is-valid]="title.valid" name="title" id="title"
+        required minlength="3" maxlength="40">
       <div class="valid-feedback">
         Tudo ok!
       </div>
       <div class="invalid-feedback">
-        Título não pode estar vazio.
+        <div *ngIf="title.hasError('required')">
+          O título deve ser obrigatório.
+        </div>
+        <div *ngIf="title.hasError('minlength')">
+          O título deve ter no mínimo 3 caracteres
+        </div>
+        <div *ngIf="title.hasError('maxlength')">
+          O título deve ter no máximo 40 caracteres
+        </div>
       </div>
     </div>
 
@@ -61,4 +69,6 @@
   <pre>title.touched: {{title.touched}}</pre>
   <pre>title.pristine: {{title.pristine}}</pre>
   <pre>title.untouched: {{title.untouched}}</pre> -->
+  <hr>
+  <pre>{{title.errors | json}}</pre>
 </form>
