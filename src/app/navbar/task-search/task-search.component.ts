@@ -3,12 +3,8 @@ import { Router } from "@angular/router";
 import { Task } from "../../tasks/shared/task.model";
 import { TaskService } from "../../tasks/shared/task.service";
 import { Subject } from "rxjs/Subject";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/observable/of';
+
 
 @Component({
   selector: 'task-search',
