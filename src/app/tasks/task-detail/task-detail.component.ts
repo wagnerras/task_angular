@@ -4,6 +4,7 @@ import { Location } from "@angular/common";
 
 import { Task } from "../shared/task.model";
 import { TaskService } from "../shared/task.service";
+import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: 'task-detail',
@@ -11,6 +12,7 @@ import { TaskService } from "../shared/task.service";
 })
 
 export class TaskDetailComponent implements OnInit, AfterViewInit {
+  public reactiveTaskForm: FormGroup;
   public task: Task;
   public taskDoneOptions: Array<any> = [
     { value: false, text: "Pendente" },
@@ -22,7 +24,14 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     private taskService: TaskService,
     private route: ActivatedRoute,
     private location: Location
-  ) { }
+  ) {
+    this.reactiveTaskForm = new FormGroup({
+      title: new FormControl(null),
+      deadline: new FormControl(null),
+      done: new FormControl(null),
+      description: new FormControl(null)
+    })
+  }
 
   public ngAfterViewInit() {
   }
@@ -32,9 +41,26 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     this.route.params
       .switchMap((params: Params) => this.taskService.getById(+params['id']))
       .subscribe(
-        task => this.task = task,
+        task => this.setTask(task),
         error => alert("Ocorreu um erro no servidor, tente mais tarde.")
       )
+  }
+
+  public setTask(task: Task) {
+    this.task = task;
+
+    /*  //setValue
+     let formModel = {
+       title: task.title || null,
+       description: task.description || null,
+       done: task.done || null,
+       deadline: task.deadline || null,
+     }
+     this.reactiveTaskForm.setValue(formModel); */
+
+    //patchValue
+    this.reactiveTaskForm.patchValue(task);
+
   }
 
   public goBack() {

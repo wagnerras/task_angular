@@ -1,72 +1,34 @@
 <h1 class="mb-5">Detalhes da tarefa: {{task?.title}}</h1>
 
-<form #taskForm="ngForm" *ngIf="task" (ngSubmit)="updateTask()" >
-
+<form [formGroup]="reactiveTaskForm">
   <div class="row">
+
     <div class="form-group col-md-6">
-      <label for="title" [class.text-danger]="title.invalid && (title.touched || title.dirty)">Título:</label>
-      <input #title="ngModel" [(ngModel)]="task.title" type="text" class="form-control"
-        [class.is-invalid]="title.invalid && (title.touched || title.dirty)"  name="title" id="title"
-        required minlength="2" maxlength="255">
-     <!--  <div class="valid-feedback">
-        Tudo ok!
-      </div> -->
-      <div class="invalid-feedback">
-        <div *ngIf="title.hasError('required')">
-          O título deve ser obrigatório.
-        </div>
-        <div *ngIf="title.hasError('minlength')">
-          O título deve ter no mínimo 2 caracteres
-        </div>
-        <div *ngIf="title.hasError('maxlength')">
-          O título deve ter no máximo 255 caracteres
-        </div>
-      </div>
+      <label for="title">Título:</label>
+      <input type="text" formControlName="title" id="title" class="form-control">
     </div>
 
     <div class="form-group col-md-3">
-      <label for="deadline">Prazo de Entrega:</label>
-      <input #deadline="ngModel" [(ngModel)]="task.deadline" type="date" class="form-control"
-        [class.is-invalid]="deadline.invalid && deadline.touched"  name="deadline" (change)="formatDate(task.deadline)"
-        id="deadline" required>
-      <!-- <div class="valid-feedback">
-        Tudo ok!
-      </div> -->
-      <div class="invalid-feedback">
-        Deadline não pode estar vazio.
-      </div>
+      <label for="deadline">Prazo de entrega:</label>
+      <input type="date" formControlName="deadline" id="deadline" class="form-control">
     </div>
 
     <div class="form-group col-md-3">
-      <label for="done">Situação da tarefa:</label>
-      <select #done="ngModel" [(ngModel)]="task.done" type="text" class="form-control"
-        [class.is-invalid]="done.invalid && done.touched"  name="done" id="done" required>
+      <label for="done">Situação:</label>
+      <select class="form-control" id="done" formControlName="done">
         <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{option.text}}</option>
       </select>
-      <!-- <div class="valid-feedback">
-        Tudo ok!
-      </div> -->
-      <div class="invalid-feedback">
-        Done não pode estar vazio.
-      </div>
     </div>
+
   </div>
 
   <div class="row">
     <div class="form-group col-md-12">
-      <label for="description">Descrição Detalhada:</label>
-      <textarea [(ngModel)]="task.description" class="form-control" name="description" id="description"
-        rows="4"></textarea>
+      <label for="description">Descrição:</label>
+      <textarea formControlName="description" id="description" class="form-control" rows="4"></textarea>
     </div>
   </div>
 
-  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" >Atualizar</button>
-  <button class="btn btn-secondary" (click)="goBack()">Voltar</button>
+  <pre>{{reactiveTaskForm.value | json}}</pre>
 
-  <pre> {{task | json}} </pre>
- <!--  <pre>title.valid: {{title.valid}}</pre>
-  <pre>title.touched: {{title.touched}}</pre>
-  <pre>title.pristine: {{title.pristine}}</pre>
-  <pre>title.untouched: {{title.untouched}}</pre>  -->
-  
 </form>

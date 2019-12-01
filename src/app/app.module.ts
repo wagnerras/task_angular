@@ -1,7 +1,7 @@
 //angular importas
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, Validators } from '@angular/forms';
+import { FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 //components imports
@@ -51,6 +51,7 @@ import * as $ from 'jquery';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
