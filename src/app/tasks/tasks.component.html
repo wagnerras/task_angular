@@ -1,16 +1,18 @@
 <h1 class="mb-3">Lista de Tarefas</h1>
 
 <div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-9">
-        <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="Digite aqui uma nova tarefa">
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-sm btn-success" (click)="createTask()"> Adicionar Tarefa </button>
+  <form (ngSubmit)="createTask()" >
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-9">
+          <input type="text" class="form-control" [(ngModel)]="newTask.title" name="title" placeholder="Digite aqui uma nova tarefa">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-sm btn-success" type="submit" > Adicionar Tarefa </button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
 
 <table class="table mt-3">
@@ -29,7 +31,7 @@
       <td>{{ task.title }}</td>
       <td>
         <a [routerLink]="['/tasks', task.id]" class="btn btn-info"> Detalhes</a>
-        <button class="btn btn-danger" (click)="deleteTask(task)" >Excluir</button>
+        <button class="btn btn-danger" (click)="deleteTask(task)">Excluir</button>
       </td>
     </tr>
   </tbody>

@@ -35,6 +35,9 @@ import "rxjs/add/operator/distinctUntilChanged";
 import "rxjs/add/observable/throw";
 import 'rxjs/add/observable/of';
 
+//jquery plugins
+import * as $ from 'jquery';
+
 @NgModule({
   declarations: [
     AppComponent,
