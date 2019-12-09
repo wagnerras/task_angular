@@ -4,18 +4,30 @@
   <div class="row">
 
     <div class="form-group col-md-6">
-      <label for="title">Título:</label>
-      <input type="text" formControlName="title" id="title" class="form-control">
+      <label for="title" [class.text-danger]="reactiveTaskForm.get('title').invalid">Título:</label>
+      <input type="text" formControlName="title" id="title" class="form-control"
+        [class.is-invalid]="reactiveTaskForm.get('title').invalid">
+      <div class="invalid-feedback">
+        <div *ngIf="reactiveTaskForm.get('title').hasError('required')">
+          O título deve ser obrigatório.
+        </div>
+        <div *ngIf="reactiveTaskForm.get('title').hasError('minlength')">
+          O título deve ter no mínimo 3 caracteres
+        </div>
+        <div *ngIf="reactiveTaskForm.get('title').hasError('maxlength')">
+          O título deve ter no máximo 255 caracteres
+        </div>
+      </div>
     </div>
 
     <div class="form-group col-md-3">
       <label for="deadline">Prazo de entrega:</label>
-      <input type="date" formControlName="deadline" id="deadline" class="form-control">
+      <input type="date" formControlName="deadline" id="deadline" class="form-control" [class.is-invalid]="reactiveTaskForm.get('deadline').invalid">
     </div>
 
     <div class="form-group col-md-3">
       <label for="done">Situação:</label>
-      <select class="form-control" id="done" formControlName="done">
+      <select class="form-control" id="done" formControlName="done" [class.is-invalid]="reactiveTaskForm.get('done').invalid">
         <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{option.text}}</option>
       </select>
     </div>
@@ -30,5 +42,6 @@
   </div>
 
   <pre>{{reactiveTaskForm.value | json}}</pre>
+  <pre>{{reactiveTaskForm.get('title').errors| json}}</pre>
 
 </form>

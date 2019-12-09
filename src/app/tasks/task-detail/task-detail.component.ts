@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 
 import { Task } from "../shared/task.model";
 import { TaskService } from "../shared/task.service";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'task-detail',
@@ -27,10 +27,10 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder
   ) {
     this.reactiveTaskForm = this.formBuilder.group({
-      title: [null],
-      deadline: [null],
-      done: [null],
-      description: [null],
+      title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      deadline: [null, Validators.required],
+      done: [null, Validators.required],
+      description: [null]
       /* user: this.formBuilder.group({
         name: ["João Carlos"],
         email: ["joao@carlos.com"]
