@@ -30,7 +30,13 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
       title: [null],
       deadline: [null],
       done: [null],
-      description: [null]
+      description: [null],
+      /* user: this.formBuilder.group({
+        name: ["João Carlos"],
+        email: ["joao@carlos.com"]
+        //para esse subgrupo funcionar no layout precisaria criar uma div
+          englobando com a diretativa formGroupName="user"
+      }) */
     })
   }
 
