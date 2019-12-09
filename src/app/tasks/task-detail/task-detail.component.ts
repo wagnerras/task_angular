@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 
 import { Task } from "../shared/task.model";
 import { TaskService } from "../shared/task.service";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'task-detail',
@@ -23,13 +23,14 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   public constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private formBuilder: FormBuilder
   ) {
-    this.reactiveTaskForm = new FormGroup({
-      title: new FormControl(null),
-      deadline: new FormControl(null),
-      done: new FormControl(null),
-      description: new FormControl(null)
+    this.reactiveTaskForm = this.formBuilder.group({
+      title: [null],
+      deadline: [null],
+      done: [null],
+      description: [null]
     })
   }
 
