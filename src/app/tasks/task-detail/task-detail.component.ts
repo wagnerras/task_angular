@@ -14,10 +14,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms"
 export class TaskDetailComponent implements OnInit, AfterViewInit {
   public reactiveTaskForm: FormGroup;
   public task: Task;
-  public taskDoneOptions: Array<any> = [
-    { value: false, text: "Pendente" },
-    { value: true, text: "Feita" }
-  ];
+  public taskDoneOptions: Array<any>;
 
 
   public constructor(
@@ -26,6 +23,12 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     private location: Location,
     private formBuilder: FormBuilder
   ) {
+
+    this.taskDoneOptions = [
+      { value: false, text: "Pendente" },
+      { value: true, text: "Feita" }
+    ];
+
     this.reactiveTaskForm = this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       deadline: [null, Validators.required],
@@ -83,7 +86,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     this.taskService.update(this.task)
       .subscribe(
         () => alert("Tarefa atualizada com sucesso!"),
-        () => alert("Ocorreu um erro no servidor, TESTE REAL.")
+        () => alert("Ocorreu um erro no servidor! Tente mais tarde.")
       )
   }
 
@@ -106,5 +109,19 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   public consertarData(data) {
     this.task.deadlineFormatado = data;
   }
+
+  //form errors
+ 
+  public errorControl(field){
+    return {
+      "text-danger": this.showFieldError(this.reactiveTaskForm.get(field)),
+      "is-invalid": this.showFieldError(this.reactiveTaskForm.get(field))
+    }
+  }
+
+  public showFieldError(field) {
+    return field.invalid && (field.touched || field.dirty);
+  }
+
 
 }
