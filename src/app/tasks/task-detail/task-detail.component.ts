@@ -6,15 +6,19 @@ import { Task } from "../shared/task.model";
 import { TaskService } from "../shared/task.service";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
+import { FormUtils } from "../../shared/form.utils";
+
+
 @Component({
   selector: 'task-detail',
   templateUrl: './task-detail.component.html'
 })
 
 export class TaskDetailComponent implements OnInit, AfterViewInit {
-  public reactiveTaskForm: FormGroup;
+  public form: FormGroup;
   public task: Task;
   public taskDoneOptions: Array<any>;
+  public formUtils: FormUtils;
 
 
   public constructor(
@@ -29,7 +33,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
       { value: true, text: "Feita" }
     ];
 
-    this.reactiveTaskForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       deadline: [null, Validators.required],
       done: [null, Validators.required],
@@ -41,6 +45,9 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
           englobando com a diretativa formGroupName="user"
       }) */
     })
+
+    this.formUtils = new FormUtils(this.form);
+
   }
 
   public ngAfterViewInit() {
@@ -69,7 +76,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
      this.reactiveTaskForm.setValue(formModel); */
 
     //patchValue
-    this.reactiveTaskForm.patchValue(task);
+    this.form.patchValue(task);
 
   }
 
@@ -78,10 +85,10 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   }
 
   public updateTask() {
-    this.task.title = this.reactiveTaskForm.get('title').value;
-    this.task.deadline = this.reactiveTaskForm.get('deadline').value;
-    this.task.done = this.reactiveTaskForm.get('done').value;
-    this.task.description = this.reactiveTaskForm.get('description').value;
+    this.task.title = this.form.get('title').value;
+    this.task.deadline = this.form.get('deadline').value;
+    this.task.done = this.form.get('done').value;
+    this.task.description = this.form.get('description').value;
 
     this.taskService.update(this.task)
       .subscribe(
@@ -112,7 +119,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
 
   //form errors
  
-  public errorControl(field){
+  /* public errorControl(field){
     return {
       "text-danger": this.showFieldError(this.reactiveTaskForm.get(field)),
       "is-invalid": this.showFieldError(this.reactiveTaskForm.get(field))
@@ -121,7 +128,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
 
   public showFieldError(field) {
     return field.invalid && (field.touched || field.dirty);
-  }
+  } */
 
 
 }
