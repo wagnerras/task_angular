@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+//angular plugins imports
+import { Angular2TokenService } from "angular2-token";
+
 //components imports
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,13 +20,14 @@ import { SignInFormComponent } from "./sign-in-form/sign-in-form.component";
 
 //services imports
 import { TaskService } from "./tasks/shared/task.service";
+import { AuthService } from "./shared/auth.service";
 
 //modules imports
 import { AppRoutingModule } from "./app-routing.module";
 
 //in memory wb api
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-import { InMemoryTaskDataService  } from "./in-memory-task-data.service";
+//import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+//import { InMemoryTaskDataService  } from "./in-memory-task-data.service";
 
 //rxjs operators
 import "rxjs/add/operator/map";
@@ -57,11 +61,13 @@ import * as $ from 'jquery';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule,
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    AppRoutingModule
+    //InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [
-    TaskService
+    TaskService,
+    Angular2TokenService,
+    AuthService 
   ],
   bootstrap: [AppComponent]
 })

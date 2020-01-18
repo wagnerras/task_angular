@@ -12,7 +12,7 @@ import { IfObservable } from "rxjs/observable/IfObservable";
 
 export class TaskService {
   
-  public tasksUrl = "api/tasks";
+  public tasksUrl = "http://api.taskmanager.test:3000/tasks";
   public headers = new Headers({'Content-type': 'application/json' });
 
   public constructor(private http: Http) { }
