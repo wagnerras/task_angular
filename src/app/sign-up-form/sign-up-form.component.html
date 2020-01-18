@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Criar Conta</button>
+    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Criar Conta</button>
 
     <pre>{{form.value | json}}</pre>
     <pre>{{form.get('name').errors| json}}</pre>
