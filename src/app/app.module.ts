@@ -12,6 +12,7 @@ import { TasksComponent } from './tasks/task.component';
 //import { LearningBindingComponent } from './learning-binds/learning-binds.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import {SignUpFormComponent} from "./sign-up-form/sign-up-form.component";
 
 //services imports
 import { TaskService } from "./tasks/shared/task.service";
@@ -46,7 +47,8 @@ import * as $ from 'jquery';
     TasksComponent,
     //LearningBindingComponent,
     TaskDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,

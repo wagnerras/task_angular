@@ -6,6 +6,7 @@ import { RouterModule } from "@angular/router";
 import { TasksComponent } from './tasks/task.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { SignUpFormComponent } from "./sign-up-form/sign-up-form.component";
 
 const ROUTES = RouterModule.forRoot([
   {
@@ -25,6 +26,10 @@ const ROUTES = RouterModule.forRoot([
   {
     path:'tasks/:id',
     component: TaskDetailComponent
+  },
+  {
+    path:'sign-up',
+    component:SignUpFormComponent
   }
 ])
 
