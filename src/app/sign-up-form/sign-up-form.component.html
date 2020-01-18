@@ -12,10 +12,10 @@
           O nome deve ser obrigatório.
         </div>
         <div *ngIf="form.get('name').hasError('minlength')">
-          O nome deve ter no mínimo 5 caracteres
+          O nome deve ter no mínimo 5 caracteres.
         </div>
         <div *ngIf="form.get('name').hasError('maxlength')">
-          O nome deve ter no máximo 100 caracteres
+          O nome deve ter no máximo 100 caracteres.
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
           O email deve ser obrigatório.
         </div>
         <div *ngIf="form.get('email').hasError('email')">
-          O email não é valido
+          O email não é valido.
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
           A senha deve ser obrigatória.
         </div>
         <div *ngIf="form.get('password').hasError('minlength')">
-          A senha deve ter no mínimo 6 caracteres
+          A senha deve ter no mínimo 6 caracteres.
         </div>
       </div>
     </div>
@@ -54,7 +54,10 @@
         [ngClass]="formUtils.errorControl('passwordConfirmation')">
         <div class="invalid-feedback">
           <div *ngIf="form.get('passwordConfirmation').hasError('required')">
-            A senha deve ser obrigatória.
+            A confirmação de senha deve ser obrigatória.
+          </div>
+          <div *ngIf="form.get('passwordConfirmation').hasError('mismatch')">
+            Confirmação de senha está diferente da senha.
           </div>
         </div>
     </div>

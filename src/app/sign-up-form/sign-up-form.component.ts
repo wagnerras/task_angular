@@ -17,13 +17,21 @@ export class SignUpFormComponent {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       passwordConfirmation: [null, [Validators.required]]
-    })
+    }, {validator: this.passwordConfirmationValidator})
     this.formUtils = new FormUtils(this.form);
   }
 
   public signUpUser() {
     console.log("Formulário de SignUP enviado");
     console.log(this.form.value);
+  }
+
+  public passwordConfirmationValidator(form: FormGroup){
+    if(form.get('password').value === form.get('passwordConfirmation').value){
+      form.get('passwordConfirmation').setErrors(null);
+    } else {
+      form.get('passwordConfirmation').setErrors({'mismatch': true});
+    }
   }
 
 }
