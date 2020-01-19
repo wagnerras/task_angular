@@ -22,6 +22,9 @@ import { SignInFormComponent } from "./sign-in-form/sign-in-form.component";
 import { TaskService } from "./tasks/shared/task.service";
 import { AuthService } from "./shared/auth.service";
 
+//guard imports
+import { AuthGuard } from "./guards/auth.guard";
+
 //modules imports
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -67,7 +70,8 @@ import * as $ from 'jquery';
   providers: [
     TaskService,
     Angular2TokenService,
-    AuthService 
+    AuthService ,
+    AuthGuard 
   ],
   bootstrap: [AppComponent]
 })
