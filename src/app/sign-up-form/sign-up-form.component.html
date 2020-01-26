@@ -1,7 +1,7 @@
 <h1 class="mb-5">Faça o seu cadastro</h1>
 
 <div class="jumbotron">
-  <form [formGroup]="form" (ngSubmit)="signUpUser()">
+  <form [formGroup]="form">
 
     <div class="form-group">
       <label for="name" [ngClass]="formUtils.errorControl('name')">Nome</label>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Criar Conta</button>
+    <button (click)="signUpUser()" [disabled]="form.invalid" type="submit" class="btn btn-primary">Criar Conta</button>
 
     <pre>{{form.value | json}}</pre>
     <pre>{{form.get('name').errors| json}}</pre>

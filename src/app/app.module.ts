@@ -68,8 +68,8 @@ import * as $ from 'jquery';
     //InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [
-    TaskService,
     Angular2TokenService,
+    TaskService,
     AuthService ,
     AuthGuard 
   ],

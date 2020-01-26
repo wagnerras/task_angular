@@ -17,11 +17,13 @@ export class AppComponent {
 
   public constructor(private tokenService: Angular2TokenService){
     this.tokenService.init({
-      apiBase: 'http://api.taskmanager.test:3000/'
-    });
+      apiBase: 'http://api.taskmanager.test:3000'
+    })
   }
   
-  
+  //   ,signInRedirect: 'sign-up'
+   //caso queira que o angular2token funcione como guarda. Importar o mesmo no app.module e trocar o can activate
+
 }
 
 
