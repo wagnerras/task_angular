@@ -20,10 +20,10 @@ export class DashboardComponent implements OnInit{
   } */
 
   public ngOnInit(){
-    this.taskService.getImportant()
+    /* this.taskService.getImportant()
       .subscribe(
         tasks => this.tasks = tasks,
         error => alert("Ocorreu um no servidor, tente mais tarde.")
-      );
+      ); */
 }
 }
