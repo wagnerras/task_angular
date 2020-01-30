@@ -24,7 +24,6 @@ export class AuthService {
   }  */
 
   public signUp(user): Observable<Response> {
-    console.log("usuario sendo recebido =>", user);
     return this.tokenService.registerAccount({
       login: user.email,
       password: user.password,
@@ -47,6 +46,14 @@ export class AuthService {
   public signOut(): Observable<Response> {
     return this.tokenService.signOut();
   }
+
+  public signIn(login, password): Observable<Response> {
+    return this.tokenService.signIn({
+      login: login,
+      password: password
+    }).catch(this.handleErrors)
+  }
+
 
   public userSignedIn() {
     return this.tokenService.userSignedIn();

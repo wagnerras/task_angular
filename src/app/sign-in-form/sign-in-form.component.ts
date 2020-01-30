@@ -29,27 +29,26 @@ export class SignInFormComponent {
     });
   }
 
-  /* public signInUser() {
+    public signInUser() {
     this.submitted = true;
-    let email = this.form.get('email').value;
+    let login = this.form.get('email').value;
     let password = this.form.get('password').value;
-    this.authService.signIn(email, password)
+    this.authService.signIn(login, password)
       .subscribe(
         () => {
-          alert('login Efetuado com sucesso!');
           this.router.navigate(['/dashboard']);
           this.formErrors = null;
         },
         (error) => {
           this.submitted = false;
           if (error.status === 401) {
-            this.formErrors = JSON.parse(error._body).errors;
+            this.formErrors = error.error.errors;
           } else {
             this.formErrors = ["Não foi possível processar a sua solicitação. Por favor tente mais tarde."]
           }
         }
       )
-  } */
+  } 
 
  
 }

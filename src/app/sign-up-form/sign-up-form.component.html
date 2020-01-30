@@ -77,6 +77,7 @@
 
     <button (click)="signUpUser()" [disabled]="form.invalid || submitted" type="submit" class="btn btn-primary">Criar Conta</button>
 
+    <p class="mt-3">Se você já possui uma conta <a routerLink="/sign-in">clique aqui para entrar</a>.</p>
     <pre>{{form.value | json}}</pre>
     <pre>{{form.get('name').errors| json}}</pre>
 

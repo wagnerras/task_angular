@@ -45,7 +45,7 @@ export class SignUpFormComponent {
           this.submitted = false;
           if (error.status === 422) {
              //this.formErrors = JSON.parse(error._body).errors.full_messages;
-             this.formErrors = ["Usuário já cadastrado"];
+             this.formErrors = error.error.errors.full_messages;
           } else {
             this.formErrors = ["Não foi possível processar a sua solicitação. Por favor tente mais tarde."]
             //alert(this.formErrors);
