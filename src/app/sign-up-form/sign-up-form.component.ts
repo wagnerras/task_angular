@@ -35,21 +35,24 @@ export class SignUpFormComponent {
   public signUpUser() {
     this.submitted = true;
     this.authService.signUp(this.form.value as User)
-     .subscribe(
-       () => {
-         alert('Parabens, sua conta foi criada com sucesso!');
-         this.router.navigate(['/dashboard']);
-         this.formErrors = null;
-       },
-       (error) => {
-         this.submitted = false;
-        if(error.status === 422) {
-          this.formErrors = JSON.parse(error._body).errors.full_messages;
-        }else{
-          this.formErrors = ["Não foi possível processar a sua solicitação. Por favor tente mais tarde."]
+      .subscribe(
+        () => {
+          alert('Parabens, sua conta foi criada com sucesso!');
+          this.router.navigate(['/dashboard']);
+          this.formErrors = null;
+        },
+        (error) => {
+          this.submitted = false;
+          if (error.status === 422) {
+             //this.formErrors = JSON.parse(error._body).errors.full_messages;
+             this.formErrors = ["Usuário já cadastrado"];
+          } else {
+            this.formErrors = ["Não foi possível processar a sua solicitação. Por favor tente mais tarde."]
+            //alert(this.formErrors);
+          }
         }
-       }
-     )
+      )
+    //this.authService.signUp(this.form.value);
   }
 
   public passwordConfirmationValidator(form: FormGroup) {

@@ -10,6 +10,7 @@ import { SignUpFormComponent } from "./sign-up-form/sign-up-form.component";
 import { SignInFormComponent } from "./sign-in-form/sign-in-form.component";
 
 import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 const ROUTES = RouterModule.forRoot([
   {
@@ -30,16 +31,18 @@ const ROUTES = RouterModule.forRoot([
   },
   {
     path:'tasks/:id',
-    component: TaskDetailComponent, 
+    component: TaskDetailComponent,
     canActivate: [AuthGuard]
   },
   {
     path:'sign-up',
-    component:SignUpFormComponent
+    component:SignUpFormComponent,
+    canActivate: [NotAuthenticatedGuard]
   },
   {
     path:'sign-in',
-    component:SignInFormComponent
+    component:SignInFormComponent,
+    canActivate: [NotAuthenticatedGuard]
   }
 ])
 

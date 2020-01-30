@@ -1,7 +1,18 @@
 <h1 class="mb-5">Faça o seu Login</h1>
 
 <div class="jumbotron">
-  <form [formGroup]="form" (ngSubmit)="signInUser()">
+  <div *ngIf="formErrors" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>
+      Ocorreu um erro ao tentar entrar no sistema.
+      <ul>
+        <li *ngFor="let error of formErrors">{{error}}</li>
+      </ul>
+    </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="form">
 
     <div class="form-group">
       <label for="email" [ngClass]="formUtils.errorControl('email')">Email</label>
@@ -19,7 +30,8 @@
 
     <div class="form-group">
       <label for="password" [ngClass]="formUtils.errorControl('password')">Senha</label>
-      <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="formUtils.errorControl('password')">
+      <input type="password" class="form-control" id="password" formControlName="password"
+        [ngClass]="formUtils.errorControl('password')">
       <div class="invalid-feedback">
         <div *ngIf="form.get('password').hasError('required')">
           A senha deve ser obrigatória.
@@ -27,9 +39,8 @@
       </div>
     </div>
 
- 
-    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Fazer Login</button>
 
+    <button [disabled]="form.invalid || submitted" (click)="signInUser()" class="btn btn-primary">Fazer Login</button>
     <pre>{{form.value | json}}</pre>
     <pre>{{form.get('email').errors| json}}</pre>
 

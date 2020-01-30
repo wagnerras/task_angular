@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 //import { LearningObservables } from "./learning-observables.service";
-import { Angular2TokenService } from 'angular2-token';
+
 
 @Component({
   selector: 'app-root',
@@ -15,14 +15,10 @@ export class AppComponent {
 
   //public constructor( LearningObservables: LearningObservables ) {}
 
-  public constructor(private tokenService: Angular2TokenService){
-    this.tokenService.init({
-      apiBase: 'http://api.taskmanager.test:3000'
-    })
+  public constructor(){
+    
   }
   
-  //   ,signInRedirect: 'sign-up'
-   //caso queira que o angular2token funcione como guarda. Importar o mesmo no app.module e trocar o can activate
 
 }
 

@@ -2,10 +2,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule} from '@angular/common/http';
 
 //angular plugins imports
-import { Angular2TokenService } from "angular2-token";
+import { AngularTokenService, AngularTokenModule, AngularTokenOptions } from 'angular-token';
 
 //components imports
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { AuthService } from "./shared/auth.service";
 
 //guard imports
 import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 //modules imports
 import { AppRoutingModule } from "./app-routing.module";
@@ -42,7 +43,7 @@ import "rxjs/add/operator/distinctUntilChanged";
 
 //rxjs extensions
 import "rxjs/add/observable/throw";
-import 'rxjs/add/observable/of';
+
 
 //jquery plugins
 import * as $ from 'jquery';
@@ -63,15 +64,21 @@ import * as $ from 'jquery';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
     //InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    AngularTokenModule.forRoot({
+      apiBase: 'http://api.taskmanager.test:3000'
+    })
   ],
   providers: [
-    Angular2TokenService,
+    AngularTokenModule,
+    AngularTokenService,
+    AngularTokenModule,
     TaskService,
     AuthService ,
-    AuthGuard 
+    AuthGuard ,
+    NotAuthenticatedGuard
   ],
   bootstrap: [AppComponent]
 })

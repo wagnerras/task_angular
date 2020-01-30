@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
@@ -55,8 +57,8 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
 
   public ngOnInit() {
 
-    this.route.params
-      .switchMap((params: Params) => this.taskService.getById(+params['id']))
+    this.route.params.pipe(
+      switchMap((params: Params) => this.taskService.getById(+params['id'])))
       .subscribe(
         task => this.setTask(task),
         error => alert("Ocorreu um erro no servidor, tente mais tarde.")
