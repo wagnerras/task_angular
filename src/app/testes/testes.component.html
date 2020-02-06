@@ -2,10 +2,13 @@
 
 <div *ngFor="let estado of estados; let i = index;">
 
-  <h2 class="mb-4" (click)="clicado(estado.id, estado.nome+i)" >{{estado.nome}}</h2>
+  <h2 class="mb-4" (click)="clicado(estado.id, estado.nome+i)">{{estado.nome}}  <i id="seta{{estado.nome+i}}" class="fas fa-chevron-down"></i> </h2>
+  
 
-  <div *ngFor="let cidade of show[estado.nome+i]">
-    <p>{{cidade.nome}}</p>
+  <div *ngFor="let cidade of showLista[estado.nome+i]">
+    <div>
+      <p>{{cidade.nome}}</p>
+    </div>
   </div>
 
 

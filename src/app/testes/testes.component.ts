@@ -4,6 +4,7 @@ import { FormUtils } from "../shared/form.utils";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/auth.service";
 import { User } from "../shared/user.model";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'testes',
@@ -39,19 +40,31 @@ export class TestesComponent {
   ]
 
   listaCidades = [];
-  show = [];
+  showLista = [];
+  mostrar:any = 0;
+
 
   public clicado(id, index) {
-    this.listaCidades = [];
-
-    for (let i of this.cidades) {
-      if (i.idE == id) { 
-        this.listaCidades.push(i);
+  
+    if(this.mostrar != index){
+      this.mostrar = index;
+      this.listaCidades = [];
+      for (let i of this.cidades) {
+        if (i.idE == id) { 
+          this.listaCidades.push(i);
+        }
       }
+      //console.log(this.listaCidades);
+      this.showLista[index] = this.listaCidades;
+      console.log(this.showLista);
+      $(`#seta${index}`).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+
+    } else {
+      this.mostrar = 0;
+      this.showLista[index] =  [];
+      $(`#seta${index}`).removeClass('fa-chevron-up').addClass('fa-chevron-down');
     }
-    console.log(this.listaCidades);
-    this.show[index] = this.listaCidades;
-    console.log(this.show);
+
   }
 
 
