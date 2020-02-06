@@ -11,6 +11,7 @@ import { SignInFormComponent } from "./sign-in-form/sign-in-form.component";
 
 import { AuthGuard } from "./guards/auth.guard";
 import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
+import { TestesComponent } from "./testes/testes.component";
 
 const ROUTES = RouterModule.forRoot([
   {
@@ -43,6 +44,10 @@ const ROUTES = RouterModule.forRoot([
     path:'sign-in',
     component:SignInFormComponent,
     canActivate: [NotAuthenticatedGuard]
+  },
+  {
+    path:'testes',
+    component: TestesComponent
   }
 ])
 

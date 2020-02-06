@@ -31,10 +31,7 @@ import { AppRoutingModule } from "./app-routing.module";
 
 //in memory wb api
 //import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-//import { InMemoryTaskDataService  } from "./in-memory-task-data.service";
-
-//rxjs operators
-import "rxjs/add/operator/map";
+//import { InMemoryTaskDataService  } from "./in-memory-task-data.service";module
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/do";
@@ -48,6 +45,9 @@ import "rxjs/add/observable/throw";
 //jquery plugins
 import * as $ from 'jquery';
 
+//testes
+import { TestesComponent } from "./testes/testes.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +58,8 @@ import * as $ from 'jquery';
     TaskDetailComponent,
     DashboardComponent,
     SignUpFormComponent,
-    SignInFormComponent
+    SignInFormComponent,
+    TestesComponent
   ],
   imports: [
     BrowserModule,

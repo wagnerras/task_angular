@@ -62,19 +62,19 @@ export class TaskService {
       map(response => response as Task))
   } */
 
-  public create(task){
+  public create(task) {
     return new Promise((resolve, reject) => {
       this.http
-          .post(this.tasksUrl, task)
-          .subscribe(
-              (result: any) => {
-                  resolve(result);
-              },
-              error => {
-                  reject(error);
-              }
-          );
-  });
+        .post(this.tasksUrl, task)
+        .subscribe(
+          (result: any) => {
+            resolve(result);
+          },
+          error => {
+            reject(error);
+          }
+        );
+    });
 
   }
 

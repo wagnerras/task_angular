@@ -1,0 +1,12 @@
+<h1 class="mb-5">lista de estados</h1>
+
+<div *ngFor="let estado of estados; let i = index;">
+
+  <h2 class="mb-4" (click)="clicado(estado.id, estado.nome+i)" >{{estado.nome}}</h2>
+
+  <div *ngFor="let cidade of show[estado.nome+i]">
+    <p>{{cidade.nome}}</p>
+  </div>
+
+
+</div>
