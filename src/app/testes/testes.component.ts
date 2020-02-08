@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { FormUtils } from "../shared/form.utils";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/auth.service";
@@ -13,11 +13,33 @@ import * as $ from 'jquery';
 })
 
 export class TestesComponent {
+  public form: FormGroup;
 
-
-  public constructor() {
-
+  public constructor(private formBuilder: FormBuilder) {
+    this.setupForm();
   }
+
+  public setupForm() {
+    this.form = this.formBuilder.group({
+      dataInicial: [null, [Validators.required, this.dataInicialValidator ]],
+      dataFinal: [null, [Validators.required, this.dataInicialValidator ]],
+    }, { validator: this.dateVerify })
+  }
+
+  public dataInicialValidator(control: AbstractControl) {
+    if ( (control.value > '3000-01-01') || (control.value < '1900-01-01') ) {
+      return { errorDate: true };
+    }
+    return null;
+  }
+
+  public dateVerify(form: FormGroup){
+    if( (form.get('dataInicial').value) > (form.get('dataFinal').value) ) {
+      form.get('dataFinal').setErrors({ 'mismatch': true });
+    }
+  }
+
+
 
   public estados = [
     { id: 1, nome: 'RJ' },
@@ -41,13 +63,11 @@ export class TestesComponent {
 
   listaCidades = [];
   showLista = [];
-  mostrar:any = 0;
-
-
+  mostrar = [];
   public clicado(id, index) {
   
-    if(this.mostrar != index){
-      this.mostrar = index;
+    if(this.mostrar.indexOf(index) == -1){
+      this.mostrar.push(index);
       this.listaCidades = [];
       for (let i of this.cidades) {
         if (i.idE == id) { 
@@ -60,7 +80,7 @@ export class TestesComponent {
       $(`#seta${index}`).removeClass('fa-chevron-down').addClass('fa-chevron-up');
 
     } else {
-      this.mostrar = 0;
+      this.mostrar.splice(this.mostrar.indexOf(index), 1)
       this.showLista[index] =  [];
       $(`#seta${index}`).removeClass('fa-chevron-up').addClass('fa-chevron-down');
     }

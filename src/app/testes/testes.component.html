@@ -1,15 +1,39 @@
+<form [formGroup]="form" class="mb-5">
+ 
+  <div class="form-group">
+    <label for="exampleInputPassword2">DaTA INICIAL</label>
+    <input type="date" class="form-control" id="exampleInputPassword2"  formControlName="dataInicial" >
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword2">DaTA FINAL</label>
+    <input type="date" class="form-control" id="exampleInputPassword2"  formControlName="dataFinal" >
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
 <h1 class="mb-5">lista de estados</h1>
 
 <div *ngFor="let estado of estados; let i = index;">
 
-  <h2 class="mb-4" (click)="clicado(estado.id, estado.nome+i)">{{estado.nome}}  <i id="seta{{estado.nome+i}}" class="fas fa-chevron-down"></i> </h2>
-  
+  <h2 class="mb-4" (click)="clicado(estado.id, estado.nome+i)">{{estado.nome}} <i id="seta{{estado.nome+i}}"
+      class="fas fa-chevron-down"></i> </h2>
+
 
   <div *ngFor="let cidade of showLista[estado.nome+i]">
     <div>
       <p>{{cidade.nome}}</p>
     </div>
   </div>
-
+ 
 
 </div>
+
+
+<pre>{{form.value | json}}</pre>
+<pre>{{form.get('dataInicial').errors| json}}</pre>
+<pre>{{form.get('dataFinal').errors| json}}</pre>
