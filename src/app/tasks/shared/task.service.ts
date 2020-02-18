@@ -30,7 +30,7 @@ export class TaskService {
     let url = `${this.tasksUrl}?q[s]=updated_at+DESC`;
     return new Promise((resolve, reject) => {
       this.http
-        .get(this.tasksUrl)
+        .get(url)
         .subscribe(
           (result: any) => {
             resolve(result);
