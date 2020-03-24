@@ -1,21 +1,23 @@
 <h1 class="mb-3">Lista de Tarefas</h1>
+<button (click)="downloadPdf()" class="btn btn-sm btn-success">download</button>
 
 <div class="card">
-  <form (ngSubmit)="createTask()" >
+  <form (ngSubmit)="createTask()">
     <div class="card-body">
       <div class="row">
         <div class="col-md-9">
-          <input type="text" class="form-control" [(ngModel)]="newTask.title" name="title" placeholder="Digite aqui uma nova tarefa">
+          <input type="text" class="form-control" [(ngModel)]="newTask.title" name="title"
+            placeholder="Digite aqui uma nova tarefa">
         </div>
         <div class="col-md-3">
-          <button class="btn btn-sm btn-success" type="submit" > Adicionar Tarefa </button>
+          <button class="btn btn-sm btn-success" type="submit"> Adicionar Tarefa </button>
         </div>
       </div>
     </div>
   </form>
 </div>
 
-<table class="table mt-3">
+<table class="table mt-3" id="tabela">
 
   <thead>
     <tr>

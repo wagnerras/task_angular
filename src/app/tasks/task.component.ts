@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from "./shared/task.model";
 import { TaskService } from './shared/task.service';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'tasks',
@@ -26,6 +27,23 @@ export class TasksComponent implements OnInit {
        error => alert("Ocorreu um erro no servidor.")
      ) */
     this.getAll();
+  }
+
+  public downloadPdf(){
+
+    const options = {
+      filename: 'exemplo.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: {},
+      jsPDF: { orientation: 'landscape'}
+    };
+
+    const content: Element = document.getElementById('tabela');
+
+    html2pdf()
+    .from(content)
+    .set(options)
+    .save();
   }
 
  /*  public getAll() {
